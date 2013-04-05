@@ -2,13 +2,14 @@
 
 ## Hardware/Software Configuration
 
-The Phone Server:
+### Test Target
 
-  Hardware Spec (Basic):
+Hardware Spec (Basic):
+
 * 2x Intel Xeon w/ Hyperthreading (2.4 GHz)
 * 3GB RAM
 
-  The Software:
+Software:
 
 * Debian 6.0.7 "Squeeze" (i386)
 * RVM head (newest)
@@ -20,7 +21,7 @@ The Phone Server:
 * Nokogiri 1.5.9 for Ruby 1.9.3 and 2.0
 * Nokogiri 1.5.6 for JRuby
 
-The SIPp Box:
+### Test Driver
 
 * Running from a VM on my laptop
 * SIPp trunk from March 1st (Latest build to not break with the patch)
@@ -29,7 +30,7 @@ The SIPp Box:
 
 ## The Adhearsion Application
 
-The Adhearsion application used in the test is a series of calls to #menu.  There are six menus in total.  Each menu has two DTMF options and an audio file that plays at their beginning. The menus have a *right* answer, meaning that only one of the choices will allow the call to continue.  On the sixth menu, one of the answer choices will cause the call to end immediately.  In most cases, a call through this system will take approximately 53 seconds.
+The Adhearsion application used in the test is a series of calls to #menu. There are six menus in total. Each menu has two DTMF options and an audio file that plays at their beginning. The menus have a *right* answer, meaning that only one of the choices will allow the call to continue. On the sixth menu, one of the answer choices will cause the call to end immediately. In most cases, a call through this system will take approximately 53 seconds.
 
 ## The SIPp Scenario
 
@@ -46,11 +47,11 @@ The SIPp scenario used can be described as follows:
 * SIPp gets a BYE from Adhearsion
 * SIPp sends a 200 OK to Adhearsion
 
-After each DTMF, Adhearsion is expected to move on to the next menu.  If Adhearsion does not continue, it will, in most cases, hang up the call and the call will be marked as failed.
+After each DTMF, Adhearsion is expected to move on to the next menu. If Adhearsion does not continue, it will, in most cases, hang up the call and the call will be marked as failed.
 
 ## The Test
 
-Each Ruby interpreter (outlined at the beginning of this document) was run through the same test.  500 calls total were run through the Adhearsion app, with 100 concurrent calls being active at any one time.  The ramp-up rate of the calls was ten calls every second.  The completion time, number of failed calls, and CPU usage of each interpreter's test were logged.
+Each Ruby interpreter (outlined at the beginning of this document) was run through the same test. 500 calls total were run through the Adhearsion app, with 100 concurrent calls being active at any one time. The ramp-up rate of the calls was ten calls every second. The completion time, number of failed calls, and CPU usage of each interpreter's test were logged.
 
 ## The Results (So Far)
 
@@ -60,9 +61,10 @@ Time to Completion: 14 minutes, 24 seconds
 Failed Calls:              24
 
 ### Ruby 2.0.0:
+
 Time to Completion: 16 minutes, 12 seconds
-Failed Calls:              N/A
+Failed Calls:              0
 
 ### JRuby:
 
-Tests so far have been proven inconclusive with JRuby.  The tests have been unable to complete as memory usage climbs to over 20 percent by the end of the first 250 calls.  After that, it starts failing because it is "Unable to create a new thread" and Java throws an OutOfMemoryError.  
+Tests so far have been proven inconclusive with JRuby. The tests have been unable to complete as memory usage climbs to over 20 percent by the end of the first 250 calls. After that, it starts failing because it is "Unable to create a new thread" and Java throws an OutOfMemoryError.  
