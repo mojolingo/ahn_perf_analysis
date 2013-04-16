@@ -14,7 +14,7 @@
 3. `rvm install 1.9.3`
 4. `rvm install 2.0.0`
 5. `rvm install jruby-1.7.2`
-  * Protip: Do __not__ `rvm install` JRuby without specifying 1.7.2, as this             causes issues with Adhearsion
+  * Protip: Do __not__ `rvm install` JRuby without specifying 1.7.2, as this causes issues with Adhearsion
 
 ## Setting Up
 1. Clone the repo
