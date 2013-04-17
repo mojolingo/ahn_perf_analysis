@@ -18,7 +18,16 @@ class TestController < Adhearsion::CallController
   end
 
   def sound_file(filename)
-    File.expand_path "./sounds/#{filename}.gsm"
+    file_path = File.expand_path "./sounds/#{filename}.gsm"
+    sound = case ENV['AHN_PUNCHBLOCK_PLATFORM']
+    when :xmpp
+      "file://#{file_path}"
+    when :freeswitch
+      file_path
+    when :asterisk
+      filename
+    end
+    sound
   end
 
 end
