@@ -1,8 +1,9 @@
-GIT
-  remote: git://github.com/adhearsion/adhearsion.git
-  revision: c1153ea9d489a69dc8d0cb2ff6dfec1f70e6c7b8
-  branch: develop
+GEM
+  remote: https://rubygems.org/
   specs:
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
     adhearsion (2.3.1)
       activesupport (~> 3.0)
       adhearsion-loquacious (~> 1.9)
@@ -20,31 +21,6 @@ GIT
       rake
       ruby_speech (~> 1.0)
       thor
-
-GIT
-  remote: git://github.com/adhearsion/punchblock.git
-  revision: 3808258b4f5a0f8292a47ffa1c414e57d8dd2de9
-  branch: feature/fs_perf_tweak
-  specs:
-    punchblock (1.8.1)
-      activesupport (~> 3.0)
-      blather (>= 0.7.0)
-      celluloid (~> 0.13)
-      future-resource (~> 1.0)
-      has-guarded-handlers (~> 1.5)
-      niceogiri (~> 1.1)
-      nokogiri (~> 1.5, >= 1.5.6)
-      ruby_ami (~> 1.2, >= 1.2.1)
-      ruby_fs (~> 1.1)
-      ruby_speech (~> 1.0)
-      state_machine (~> 1.0)
-
-GEM
-  remote: https://rubygems.org/
-  specs:
-    activesupport (3.2.13)
-      i18n (= 0.6.1)
-      multi_json (~> 1.0)
     adhearsion-loquacious (1.9.3)
     blather (0.8.4)
       activesupport (>= 2.3.11)
@@ -54,7 +30,7 @@ GEM
       nokogiri (~> 1.5, >= 1.5.6)
     celluloid (0.13.0)
       timers (>= 1.0.0)
-    celluloid-io (0.13.0)
+    celluloid-io (0.13.1)
       celluloid (>= 0.13.0)
       nio4r (>= 0.4.0)
     coderay (1.0.9)
@@ -84,8 +60,8 @@ GEM
       nokogiri (~> 1.5)
     nio4r (0.4.3)
     nio4r (0.4.3-java)
-    nokogiri (1.5.6)
-    nokogiri (1.5.6-java)
+    nokogiri (1.5.9)
+    nokogiri (1.5.9-java)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -95,6 +71,18 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
       spoon (~> 0.0)
+    punchblock (1.8.1)
+      activesupport (~> 3.0)
+      blather (>= 0.7.0)
+      celluloid (~> 0.13)
+      future-resource (~> 1.0)
+      has-guarded-handlers (~> 1.5)
+      niceogiri (~> 1.1)
+      nokogiri (~> 1.5, >= 1.5.6)
+      ruby_ami (~> 1.2, >= 1.2.1)
+      ruby_fs (~> 1.0)
+      ruby_speech (~> 1.0)
+      state_machine (~> 1.0)
     rake (10.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -108,7 +96,7 @@ GEM
       rubinius-core-api
     rubinius-core-api (0.0.1)
     rubinius-core-api (0.0.1-java)
-    ruby_ami (1.3.2)
+    ruby_ami (1.3.3)
       celluloid-io (~> 0.13)
       countdownlatch (~> 1.0)
       future-resource
@@ -132,7 +120,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  adhearsion!
-  nokogiri (= 1.5.6)
-  punchblock!
+  adhearsion
+  nokogiri
   rspec

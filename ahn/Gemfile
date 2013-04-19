@@ -1,8 +1,7 @@
 source "https://rubygems.org"
 
-gem "adhearsion", :git => "git://github.com/adhearsion/adhearsion.git", :branch => "develop"
-gem "punchblock", :git => "git://github.com/adhearsion/punchblock.git", :branch => "feature/fs_perf_tweak" 
-gem "nokogiri", "1.5.6"
+gem "nokogiri"
+gem "adhearsion"
 #
 # Here are some example plugins you might like to use. Simply
 # uncomment them and run `bundle install`.
