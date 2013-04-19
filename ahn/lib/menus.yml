@@ -23,4 +23,3 @@
   dtmf: 7
   incorrect_dtmf: 1
   sound: tt-somethingwrong
-  hangup: true

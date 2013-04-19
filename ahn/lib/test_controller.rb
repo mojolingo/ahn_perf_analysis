@@ -4,10 +4,11 @@ require 'yaml'
 class TestController < Adhearsion::CallController
 
   def run
+    logger.warn "VALUE OF AHN_PB_PLATFORM IS: #{ENV['AHN_PUNCHBLOCK_PLATFORM']}"
     menus = YAML.load_file 'lib/menus.yml'
     answer
     menus.each { |m| test_menu m }
-    hangup
+    play sound_file 'tt-monkeys'
   end
 
   def test_menu(opts)
@@ -20,11 +21,11 @@ class TestController < Adhearsion::CallController
   def sound_file(filename)
     file_path = File.expand_path "./sounds/#{filename}.gsm"
     sound = case ENV['AHN_PUNCHBLOCK_PLATFORM']
-    when :xmpp
+    when "xmpp"
       "file://#{file_path}"
-    when :freeswitch
+    when "freeswitch"
       file_path
-    when :asterisk
+    when "asterisk"
       filename
     end
     sound
