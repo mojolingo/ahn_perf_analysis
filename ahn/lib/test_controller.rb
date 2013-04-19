@@ -1,21 +1,27 @@
 # encoding: utf-8
-require 'yaml'
-
 class TestController < Adhearsion::CallController
 
   def run
-    logger.warn "VALUE OF AHN_PB_PLATFORM IS: #{ENV['AHN_PUNCHBLOCK_PLATFORM']}"
-    menus = YAML.load_file 'lib/menus.yml'
     answer
-    menus.each { |m| test_menu m }
-    play sound_file 'tt-monkeys'
-  end
-
-  def test_menu(opts)
-    menu "#{sound_file opts['sound']}" do
-      match(opts['incorrect_dtmf']) { hangup }
-      match(opts['dtmf'])           { nil }
+    menu sound_file 'tt-monkeys' do
+      match(4) { nil }
     end
+    menu sound_file 'tt-weasels' do
+      match(8) { nil }
+    end
+    menu sound_file 'tt-somethingwrong' do
+      match(9) { nil }
+    end
+    menu sound_file 'tt-monkeys' do
+      match(1) { nil }
+    end
+    menu sound_file 'tt-weasels' do
+      match(3) { nil }
+    end
+    menu sound_file 'tt-somethingwrong' do
+      match(7) { nil }
+    end
+    play sound_file 'tt-monkeys'
   end
 
   def sound_file(filename)
