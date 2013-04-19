@@ -17,9 +17,12 @@ Software:
 * Ruby 2.0.0-p0
 * JRuby 1.7.3
 * Adhearsion 2.3.1
-* Punchblock 1.8.1
+* Punchblock 1.8.2
 * Nokogiri 1.5.9 for Ruby 1.9.3 and 2.0
 * Nokogiri 1.5.6 for JRuby
+* Voxeo PRISM v11.0.0
+* FreeSWITCH 
+* Asterisk 11.3.0
 
 ### Test Driver
 
@@ -52,3 +55,5 @@ After each DTMF, Adhearsion is expected to move on to the next menu. If Adhearsi
 ## The Test
 
 Each Ruby interpreter (outlined at the beginning of this document) was run through the same test. 250 calls total were run through the Adhearsion app, with 50 concurrent calls being active at any one time. The ramp-up rate of the calls was ten calls every second. The completion time, number of failed calls, average number of calls per second, CPU usage, and memory usage of each interpreter's test were logged.
+
+Also, each Ruby interpreter was tested against each of the three telephony platforms.
