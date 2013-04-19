@@ -1,4 +1,4 @@
-# Load Testing Adhearsion
+# Load Testing Adhearsion: Step-by-step Instructions
 
 ## What You'll need
 * [Vagrant](http://vagrantup.com)
@@ -43,6 +43,7 @@ in the `vagrant/sipp/` directory for caveats and known issues)
 * In your SIPp Vagrant VM
   1. `cd src/scenarios`, if you're not already there
   2. `sudo sipp -i` _ip\_of\_vm_ `-sf scenario1.xml -l` _concurrent\_calls_ `-m` _total\_calls_ `-r` _calls\_per\_second_ `-s 1 -p 8836` _ip\_of\_adhearsion\_box_
+     * I used `sudo sipp -i` _ip\_of\_vm_ `-sf scenario1.xml -l 50 -m 250 -r 10 -s 1 -p 8836` _ip\_of\_ahn\_box_
   3. Let the tests run 
 
 Repeat the steps above for all versions of Ruby you're using.
