@@ -1,4 +1,4 @@
-# Load Testing Adhearsion: Steps Taken Thus Far
+# Load Testing Adhearsion: Methodology
 
 ## Hardware/Software Configuration
 
@@ -6,7 +6,7 @@
 
 Hardware Spec (Basic):
 
-* 2x Intel Xeon w/ Hyperthreading (2.4 GHz)
+* 2x Intel Xeon w/ Hyperthreading (3.06 GHz)
 * 3GB RAM
 
 Software:
@@ -16,14 +16,17 @@ Software:
 * Ruby 1.9.3-p392
 * Ruby 2.0.0-p0
 * JRuby 1.7.3
-* Latest Adhearsion from "develop" branch
-* Punchblock from "feature/fs_perf_tweak"
+* Adhearsion 2.3.1
+* Punchblock 1.8.2
 * Nokogiri 1.5.9 for Ruby 1.9.3 and 2.0
 * Nokogiri 1.5.6 for JRuby
+* Voxeo PRISM v11.0.0
+* FreeSWITCH 
+* Asterisk 11.3.0
 
 ### Test Driver
 
-* Running from a VM on my laptop
+* Running from a Vagrant box on a laptop
 * SIPp trunk from March 1st (Latest build to not break with the patch)
 * dyn_pcap_audio patch for DTMF
 * Built with `make pcapplay`
@@ -44,27 +47,13 @@ The SIPp scenario used can be described as follows:
 * SIPp waits 10 seconds and then plays a DTMF 1
 * SIPp waits 3 seconds and then plays a DTMF 3
 * SIPp waits 2.5 seconds and then plays a DTMF 7
-* SIPp gets a BYE from Adhearsion
-* SIPp sends a 200 OK to Adhearsion
+* SIPp sends a BYE to Adhearsion
+* SIPp gets a 200 OK from Adhearsion
 
 After each DTMF, Adhearsion is expected to move on to the next menu. If Adhearsion does not continue, it will, in most cases, hang up the call and the call will be marked as failed.
 
 ## The Test
 
-Each Ruby interpreter (outlined at the beginning of this document) was run through the same test. 500 calls total were run through the Adhearsion app, with 100 concurrent calls being active at any one time. The ramp-up rate of the calls was ten calls every second. The completion time, number of failed calls, and CPU usage of each interpreter's test were logged.
+Each Ruby interpreter (outlined at the beginning of this document) was run through the same test. 250 calls total were run through the Adhearsion app, with 50 concurrent calls being active at any one time. The ramp-up rate of the calls was ten calls every second. The completion time, number of failed calls, average number of calls per second, CPU usage, and memory usage of each interpreter's test were logged.
 
-## The Results (So Far)
-
-### Ruby 1.9.3:
-
-Time to Completion: 14 minutes, 24 seconds
-Failed Calls:              24
-
-### Ruby 2.0.0:
-
-Time to Completion: 16 minutes, 12 seconds
-Failed Calls:              0
-
-### JRuby:
-
-Tests so far have been proven inconclusive with JRuby. The tests have been unable to complete as memory usage climbs to over 20 percent by the end of the first 250 calls. After that, it starts failing because it is "Unable to create a new thread" and Java throws an OutOfMemoryError.  
+Also, each Ruby interpreter was tested against each of the three telephony platforms.
